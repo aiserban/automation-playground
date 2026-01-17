@@ -24,6 +24,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: cd wdio
-    - run: npm ci
-    - run: npm run wdio
+    - name: install dependencies
+      run: npm ci
+      working-directory: ./wdio
+    - name: run wdio tests
+      run: npm run wdio
+      working-directory: ./wdio
