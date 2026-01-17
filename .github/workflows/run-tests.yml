@@ -25,13 +25,18 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
           cache-dependency-path: './wdio/package-lock.json'
-      - name: install dependencies
+      - name: Install dependencies
         run: npm ci
         working-directory: ./wdio
       - name: run wdio tests
         run: npm run wdio
         working-directory: ./wdio
+      - name: Generate Allure report
+        if: always()
+        run: npm run generate-allure-report
+        working-directory: ./wdio
       - uses: actions/upload-artifact@v6.0.0
+        if: always()
         with:
-          name: 'Allure Report'
+          name: 'Publish Allure Report'
           path: ./wdio/allure-report/
