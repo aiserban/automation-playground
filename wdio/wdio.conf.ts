@@ -2,8 +2,10 @@ import { verifyTestPrerequisites } from './src/support/verify-test-prerequisites
 import prodConfig from './src/config/prod/config';
 import intConfig from './src/config/int/config';
 import { getEnv } from './src/support/environments';
+import { browser } from '@wdio/globals';
 
 verifyTestPrerequisites();
+const tags = process.env.TAGS;
 
 const cfg = getEnv() === 'prod' ? prodConfig : intConfig;
 
@@ -72,7 +74,7 @@ export const config: WebdriverIO.Config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: 'info',
+  logLevel: 'error',
   //
   // Set specific log levels per logger
   // loggers:
@@ -158,7 +160,7 @@ export const config: WebdriverIO.Config = {
     // <boolean> fail if there are any undefined or pending steps
     strict: false,
     // <string> (expression) only execute the features or scenarios with tags matching the expression
-    tagExpression: '',
+    tagExpression: tags,
     // <number> timeout for step definitions
     timeout: 60000,
     // <boolean> Enable this config to treat undefined definitions as warnings.
@@ -275,8 +277,9 @@ export const config: WebdriverIO.Config = {
    * @param {number}                 result.duration  duration of scenario in milliseconds
    * @param {object}                 context          Cucumber World object
    */
-  // afterScenario: function (world, result, context) {
-  // },
+  afterScenario: async function (world, result, context) {
+    await browser.execute(() => window.localStorage.clear());
+  },
   /**
    *
    * Runs after a Cucumber Feature.

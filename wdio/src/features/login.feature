@@ -3,7 +3,7 @@ Feature: Login tests
   Scenario Outline: As a user, I can log
     Given I visit the login page
     When I login with the credentials of <username>
-    Then I see the products page
+    Then I see the inventory page
 
     Examples:
       | username                |
