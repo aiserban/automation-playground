@@ -24,6 +24,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: './wdio/package-lock.json'
     - name: install dependencies
       run: npm ci
       working-directory: ./wdio
