@@ -1,7 +1,7 @@
+@smoke
 Feature: Checkout
 
-  @dev
-  Scenario Outline: Items can be purchased
+  Scenario Outline: <username> can purchase <product>
     Given I visit the login page
     And I login with the credentials of <username>
     When I see the inventory page

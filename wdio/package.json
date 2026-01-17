@@ -5,11 +5,13 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "wdio": "wdio run ./wdio.conf.ts"
+    "wdio": "wdio run ./wdio.conf.ts && npm run generate-allure-report",
+    "generate-allure-report": "allure generate allure-results --clean"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
     "@types/node": "^25.0.9",
+    "@wdio/allure-reporter": "^9.22.0",
     "@wdio/cli": "^9.23.0",
     "@wdio/cucumber-framework": "^9.23.0",
     "@wdio/globals": "^9.23.0",

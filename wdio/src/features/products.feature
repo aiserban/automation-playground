@@ -1,3 +1,4 @@
+@smoke
 Feature: Products page
 
   Scenario: Accurate product information is displayed

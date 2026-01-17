@@ -1,6 +1,7 @@
+@smoke
 Feature: Login tests
 
-  Scenario Outline: As a user, I can log
+  Scenario Outline: <username> can login
     Given I visit the login page
     When I login with the credentials of <username>
     Then I see the inventory page
