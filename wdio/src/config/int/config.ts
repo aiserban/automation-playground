@@ -7,6 +7,4 @@ const CONFIG = Object.freeze({
   users,
 } as EnvironmentConfig);
 
-console.log(CONFIG);
-
 export default CONFIG;

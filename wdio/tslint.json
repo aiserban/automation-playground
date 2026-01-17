@@ -1,6 +1,7 @@
 {
   "rules": {
     "semicolon": true,
-    "arrow-parens": true
+    "arrow-parens": true,
+    "no-unused-variable": true
   }
 }
