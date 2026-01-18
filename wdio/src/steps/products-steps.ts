@@ -2,7 +2,7 @@ import { Then, When } from '@wdio/cucumber-framework';
 import { getConfig } from '../support/config';
 import InventoryPage from '../pages/inventory-page';
 
-Then('all products are listed', async () => {
+Then('all products are listed with the expected information', async () => {
   const expectedProducts = getConfig().products;
   const productsOnPage = await InventoryPage.getInventoryItemDetails();
 

@@ -5,4 +5,4 @@ Feature: Products page
     Given I visit the login page
     And I login with the credentials of standard_user
     When I see the inventory page
-    Then all products are listed
+    Then all products are listed with the expected information
