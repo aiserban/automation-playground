@@ -21,7 +21,7 @@ However `inventory-page.ts` has a different approach that I'm a fan of, using re
 - **Pages**: approach is Page Object Model. All pages extend abstract class `Page`. See `inventory` page for the approach I'm most fond of.
 - **Steps**: Used a mix of regex and regular Cucumber strings with parameters.
 - **Helpers**: A multitude of helpers can be found in `support`. Everything from custom Cucumber parameters, selector helpers, waits, environments, credentials and interfaces.
-- **CI/CD**: Github Actions workflow can be found in the top-most directory of this repo. Execution can be seen in Github Actions page.
+- **CI/CD**: Github Actions workflow can be found in the top-most directory of this repo. Execution can be seen in Github Actions page. You can trigger an on-demand run yourself.
 
 ## Other notes
 Some tests are expected to fail as the website provides various problematic users that cannot perform various actions. I decided to use them to prove tests can both pass and succeed.
