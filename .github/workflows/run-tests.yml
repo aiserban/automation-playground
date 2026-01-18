@@ -5,9 +5,9 @@ name: Run Webdriver.io Cucumber tests
 
 on:
   push:
-    branches: [ "master", "github-actions" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "master", "github-actions" ]
+    branches: [ "master"]
 
 jobs:
   build:
@@ -31,12 +31,3 @@ jobs:
       - name: run wdio tests
         run: npm run wdio
         working-directory: ./wdio
-      - name: Generate Allure report
-        if: always()
-        run: npm run generate-allure-report
-        working-directory: ./wdio
-      - uses: actions/upload-artifact@v6.0.0
-        if: always()
-        with:
-          name: 'Publish Allure Report'
-          path: ./wdio/allure-report/
