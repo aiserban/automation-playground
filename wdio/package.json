@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "wdio": "wdio run ./wdio.conf.ts"
+    "wdio": "wdio run ./wdio.conf.ts",
+    "wdio-headless": "HEADLESS=true wdio run ./wdio.conf.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",

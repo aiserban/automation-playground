@@ -1,13 +1,21 @@
 const getExecutionConfig = () => {
   const device = process.env.DEVICE.toLowerCase();
   const browserName = process.env.BROWSER.toLowerCase();
+  const headless = process.env.HEADLESS.toLowerCase() === 'true';
+
+  const chromeArgs = [
+    '--disable-infobars',
+    ...(headless ? ['--headless=new'] : []),
+  ];
 
   if (device === 'desktop' && browserName === 'chrome') {
     return {
       capabilities: [
         {
           browserName: 'chrome',
-          'goog:chromeOptions': { args: ['--disable-infobars'] },
+          'goog:chromeOptions': {
+            args: chromeArgs,
+          },
         },
       ],
       services: [],
@@ -28,7 +36,6 @@ const getExecutionConfig = () => {
         },
       ],
       services: [
-        'visual',
         [
           'appium',
           {

@@ -29,5 +29,5 @@ jobs:
         run: npm ci
         working-directory: ./wdio
       - name: run wdio tests
-        run: npm run wdio
+        run: npm run wdio-headless
         working-directory: ./wdio

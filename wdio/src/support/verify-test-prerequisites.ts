@@ -4,6 +4,7 @@ const mandatoryEnvironmentVariables = [
   'TAGS',
   'DEVICE',
   'BROWSER',
+  'HEADLESS',
 ];
 
 export const verifyTestPrerequisites = () => {
