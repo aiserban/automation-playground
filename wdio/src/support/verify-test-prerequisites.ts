@@ -1,4 +1,10 @@
-const mandatoryEnvironmentVariables = ['TEST_ENV', 'DEFAULT_PASSWORD', 'TAGS'];
+const mandatoryEnvironmentVariables = [
+  'TEST_ENV',
+  'DEFAULT_PASSWORD',
+  'TAGS',
+  'DEVICE',
+  'BROWSER',
+];
 
 export const verifyTestPrerequisites = () => {
   mandatoryEnvironmentVariables.forEach((item) => {

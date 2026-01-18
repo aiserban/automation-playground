@@ -3,6 +3,7 @@ import prodConfig from './src/config/prod/config';
 import intConfig from './src/config/int/config';
 import { getEnv } from './src/support/environments';
 import { browser } from '@wdio/globals';
+import { executionConfig } from './wdio.capabilities.conf';
 
 verifyTestPrerequisites();
 const tags = process.env.TAGS;
@@ -55,18 +56,13 @@ export const config: WebdriverIO.Config = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: 10,
+  maxInstances: Number(process.env.MAX_INSTANCES),
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
   // https://saucelabs.com/platform/platform-configurator
   //
-  capabilities: [
-    {
-      browserName: 'chrome',
-    },
-  ],
-
+  capabilities: executionConfig.capabilities,
   //
   // ===================
   // Test Configurations
@@ -114,7 +110,7 @@ export const config: WebdriverIO.Config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ['visual'],
+  services: executionConfig.services,
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -277,7 +273,13 @@ export const config: WebdriverIO.Config = {
    * @param {object}                 context          Cucumber World object
    */
   afterScenario: async function (world, result, context) {
-    await browser.execute(() => window.localStorage.clear());
+    if (browser && browser.sessionId) {
+      try {
+        await browser.execute(() => window.localStorage.clear());
+      } catch (e) {
+        console.log('Could not clear localStorage: Session might be closed.');
+      }
+    }
   },
   /**
    *
